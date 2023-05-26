@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import preprocessor, helper
 import seaborn as sns
 
+st.set_page_config(page_title='WhatsApp Chat Analyzer - Kunj',layout='wide', initial_sidebar_state='expanded')
+
 st.sidebar.title('WhatsApp Chat Analyzer')
 
 uploaded_file = st.sidebar.file_uploader('Upload a WhatsApp Chat File:')
@@ -13,7 +15,9 @@ if uploaded_file is not None:
 
     # fetch unique users
     user_list = df['user'].unique().tolist()
-    user_list.remove('whatsapp notification')
+    for user in user_list:
+        if user == 'whatsapp notification':
+            user_list.remove('whatsapp notification')
     user_list.sort()
     user_list.insert(0, "Overall")
 
